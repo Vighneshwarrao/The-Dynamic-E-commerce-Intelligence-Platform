@@ -1,0 +1,140 @@
+/* ---------- THEME & BASE ---------- */
+:root{
+  --bg: #0f1724;
+  --muted: #98a0b3;
+  --accent: linear-gradient(90deg,#5ee7df,#b490ca);
+  --primary: #6b7cff;
+  --accent-solid: #7b61ff;
+  --card-radius: 12px;
+  --card-padding: 1rem;
+  --gap: 1rem;
+}
+
+/* Reset */
+*{ box-sizing:border-box; }
+html,body{ height:100%; margin:0; padding:0; font-family: Inter, "Segoe UI", Roboto, Arial, sans-serif; background: radial-gradient(800px 400px at 10% 10%, rgba(123,97,255,0.06), transparent 8%), radial-gradient(600px 300px at 90% 90%, rgba(94,231,223,0.04), transparent 6%), var(--bg); color:#dfe9f7; -webkit-font-smoothing:antialiased; }
+
+/* App container */
+.app{ width: min(1200px, 96%); margin: 1.25rem auto; }
+
+/* Header */
+.header{ display:flex; gap:0.75rem; align-items:center; margin-bottom:1rem; }
+.logo{ width:48px; height:48px; border-radius:10px; background: linear-gradient(90deg,#5ee7df,#b490ca); display:flex; align-items:center; justify-content:center; font-weight:700; color:#071028; box-shadow:0 8px 30px rgba(107,124,255,0.12); }
+.title h1{ margin:0; font-size:1.05rem; }
+.title p{ margin:0; color:var(--muted); font-size:0.9rem; }
+
+/* ---------- GRID (2x2) ---------- */
+.grid2{
+  display:grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: auto auto;
+  gap: var(--gap);
+  align-items:start;
+}
+
+/* Card base */
+.card{
+  background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
+  border: 1px solid rgba(255,255,255,0.04);
+  border-radius: var(--card-radius);
+  padding: var(--card-padding);
+  box-shadow: 0 8px 28px rgba(2,6,23,0.55);
+  transition: transform 220ms cubic-bezier(.2,.9,.3,1), box-shadow 220ms;
+  min-height: auto;
+}
+.card:hover{ transform: translateY(-6px); box-shadow: 0 18px 42px rgba(2,6,23,0.6); }
+
+.card-header{ margin-bottom:0.6rem; }
+.card-header h2{ margin:0; font-size:1rem; color:#ecf4ff; }
+
+/* Controls */
+.input-row{ display:flex; gap:0.6rem; align-items:center; margin-bottom:0.5rem; }
+.reco-grid{ margin-top:0.6rem; }
+
+/* Labels & inputs */
+.label-text{ display:block; font-size:0.82rem; color:var(--muted); margin-bottom:6px; }
+label{ display:flex; flex-direction:column; gap:0.25rem; }
+
+input[type="text"], input[type="number"], textarea{
+  background: rgba(255,255,255,0.02);
+  border: 1px solid rgba(255,255,255,0.03);
+  color: #e9f2ff;
+  padding: 0.5rem 0.6rem;
+  border-radius: 8px;
+  outline: none;
+  transition: box-shadow 180ms, transform 180ms;
+  width:100%;
+}
+input:focus, textarea:focus{ box-shadow: 0 8px 30px rgba(107,124,255,0.08); border-color: var(--accent-solid); transform: translateY(-2px); }
+
+/* Buttons */
+.btn{
+  background: linear-gradient(90deg,var(--primary),var(--accent-solid));
+  color:#fff;
+  border:none;
+  padding:0.6rem 0.85rem;
+  border-radius:9px;
+  font-weight:600;
+  cursor:pointer;
+  box-shadow: 0 10px 28px rgba(107,124,255,0.08);
+}
+.btn:active{ transform: translateY(1px) scale(0.997); }
+
+/* RESULT text */
+.result{ margin-top:0.6rem; font-weight:700; color:#dff3ea; }
+
+/* ---------- SALES CARD: structured inputs ---------- */
+.sales-card .sales-row{
+  display:grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 0.8rem;
+  margin-bottom:0.6rem;
+}
+
+/* small row (4 compact fields) */
+.sales-card .sales-row.small{
+  grid-template-columns: repeat(4, 1fr);
+  gap:0.6rem;
+}
+.sales-card .label-text{ font-size:0.78rem; color:var(--muted); }
+
+/* reduce vertical size of inputs to avoid clumsy look */
+input[type="number"], input[type="text"]{ padding:0.46rem 0.6rem; font-size:0.92rem; }
+
+/* form actions: button + inline result */
+.form-actions{ display:flex; gap:1rem; align-items:center; margin-top:0.5rem; }
+
+/* ---------- PRODUCT CARD: make it slightly taller but not huge ---------- */
+.prod-card{ min-height: 300px; display:flex; flex-direction:column; }
+.reco-grid{ margin-top:0.6rem; }
+/* simple list style for recommendations */
+#rec_list_container ol{ margin:0; padding-left:1.1rem; color:#eaf0ff; }
+.rec-item{ display:flex; align-items:center; gap:0.6rem; margin:0.35rem 0; }
+
+/* star visuals (fractional) */
+.stars-outer{ position:relative; display:inline-block; color: rgba(255,255,255,0.18); font-size:0.92rem; }
+.stars-inner{ position:absolute; top:0; left:0; overflow:hidden; white-space:nowrap; color:#ffd66b; transition:width 600ms cubic-bezier(.2,.9,.3,1); }
+
+/* ---------- CHURN & SENTIMENT ---------- */
+.churn-card{ min-height:220px; }
+.sent-card{ min-height:220px; margin-top: -60px; }
+
+/* small text */
+.muted{ color:var(--muted); font-size:0.88rem; }
+
+/* ---------- Responsive: stack on small screens ---------- */
+@media (max-width: 900px){
+  .grid2{ display:block; }
+  .card{ margin-bottom: var(--gap); }
+  .sales-card .sales-row.small{ grid-template-columns: repeat(2, 1fr); }
+  .sales-card .sales-row{ grid-template-columns: 1fr; }
+  .prod-card{ min-height: auto; }
+  .sent-card{margin-top: 0px;}
+  .form-actions{ flex-direction:column; align-items:flex-start; gap:0.5rem; }
+}
+
+/* very small phones: increase tap targets */
+@media (max-width:420px){
+  .btn{ padding:0.9rem; font-size:1rem; border-radius:12px; }
+  input, textarea{ padding:0.7rem; font-size:0.98rem; }
+}

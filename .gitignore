@@ -1,0 +1,12 @@
+# Ignore Python cache and environment folders
+__pycache__/
+.env
+*.pyc
+
+# Ignore data files
+*.csv
+
+!"datasets\customer_df.csv"
+!"datasets\avg_product_review_score.csv"
+
+venv/

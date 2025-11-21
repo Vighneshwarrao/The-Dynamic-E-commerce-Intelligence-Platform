@@ -1,0 +1,18 @@
+from fastapi import FastAPI
+from backend.app.services import sales_forecasting ,chrun_prediction,recommendation_model,sentiment_analysis
+from fastapi.middleware.cors import CORSMiddleware
+app=FastAPI()
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=['https://vighneshwarrao.github.io/The-Dynamic-E-commerce-Intelligence-Platform/'],
+    allow_methods=['*'],
+    allow_headers=['*']
+)
+@app.get('/')
+def hello():
+    return {"message":"Hello World !"}
+
+app.include_router(sales_forecasting.router)
+app.include_router(chrun_prediction.router)
+app.include_router(recommendation_model.router)
+app.include_router(sentiment_analysis.router)

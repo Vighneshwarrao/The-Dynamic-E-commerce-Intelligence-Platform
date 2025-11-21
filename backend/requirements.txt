@@ -1,0 +1,15 @@
+fastapi
+uvicorn[standard]
+
+pandas
+numpy
+scikit-learn
+scipy
+
+joblib
+
+nltk
+deep-translator
+
+python-multipart
+aiofiles

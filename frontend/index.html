@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Dynamic E-commerce Intelligence Platform</title>
+
+  <!-- Point to your CSS file (uploaded path). We'll transform /mnt/data/... into a served URL in your dev setup. -->
+  <link rel="stylesheet" href="css/styles.css">
+
+  <style>
+    /* quick safety */
+    html,body { height:100%; margin:0; padding:0; }
+  </style>
+</head>
+<body>
+  <div class="app">
+
+    <!-- HEADER -->
+    <header class="header" role="banner">
+      <div class="title">
+        <div class="logo">ML</div>
+        <div>
+          <h1>Dynamic E-commerce Intelligence</h1>
+          <p class="muted">Predictive dashboard — Sales, Churn, Recommendations & Sentiment</p>
+        </div>
+      </div>
+    </header>
+
+    <!-- 2x2 Grid: Sales | Product
+                 Churn | Sentiment -->
+    <main class="grid2" role="main">
+
+      <!-- Sales Forecast -->
+      <section id="salesCard" class="card sales-card" aria-labelledby="sales-h">
+        <div class="card-header"><h2 id="sales-h">Sales Forecast</h2></div>
+
+        <form id="salesForm" autocomplete="off" novalidate>
+          <!-- Row 1: two inputs -->
+          <div class="sales-row">
+            <label>
+              <span class="label-text">Number of Orders</span>
+              <input inputmode="numeric" type="number" id="num_of_order" required>
+            </label>
+
+            <label>
+              <span class="label-text">Lag 1 (₹)</span>
+              <input inputmode="decimal" step="0.01" type="number" id="sales_lag_1" required>
+            </label>
+          </div>
+
+          <!-- Row 2 -->
+          <div class="sales-row">
+            <label>
+              <span class="label-text">Lag 2 (₹)</span>
+              <input inputmode="decimal" step="0.01" type="number" id="sales_lag_2" required>
+            </label>
+
+            <label>
+              <span class="label-text">Lag 3 (₹)</span>
+              <input inputmode="decimal" step="0.01" type="number" id="sales_lag_3" required>
+            </label>
+          </div>
+
+          <!-- Row 3 -->
+          <div class="sales-row">
+            <label>
+              <span class="label-text">Lag 4 (₹)</span>
+              <input inputmode="decimal" step="0.01" type="number" id="sales_lag_4" required>
+            </label>
+
+            <label>
+              <span class="label-text">Rolling Mean (4W)</span>
+              <input inputmode="decimal" step="0.01" type="number" id="rolling_mean_4" required>
+            </label>
+          </div>
+
+          <!-- Row 4: compact numeric fields -->
+          <div class="sales-row small">
+            <label>
+              <span class="label-text">Rolling Std (4W)</span>
+              <input inputmode="decimal" step="0.01" type="number" id="rolling_std_4" required>
+            </label>
+
+            <label>
+              <span class="label-text">Year</span>
+              <input inputmode="numeric" type="number" id="year" required>
+            </label>
+
+            <label>
+              <span class="label-text">Month</span>
+              <input inputmode="numeric" type="number" id="month" required>
+            </label>
+
+            <label>
+              <span class="label-text">Week of Year</span>
+              <input inputmode="numeric" type="number" id="week_of_year" required>
+            </label>
+          </div>
+
+          <div class="form-actions">
+            <button class="btn" type="submit">Predict Sales</button>
+            <div id="salesResult" class="result" aria-live="polite"></div>
+          </div>
+        </form>
+      </section>
+
+      <!-- Product Recommendations -->
+      <section id="prodCard" class="card prod-card" aria-labelledby="prod-h">
+        <div class="card-header"><h2 id="prod-h">Product Recommendations</h2></div>
+
+        <div class="input-row">
+          <label style="flex:1">
+            <span class="label-text">Product ID</span>
+            <input type="text" id="product_id_input" placeholder="e.g. 6db72cc3..." />
+          </label>
+          <button class="btn" id="recBtn" style="margin-top: 26px;">Get Recommendations</button>
+        </div>
+
+        <div id="recResult" class="result" aria-live="polite"></div>
+        <div id="rec_list_container" class="reco-grid"></div>
+      </section>
+
+      <!-- Churn Prediction -->
+      <section id="churnCard" class="card churn-card" aria-labelledby="churn-h">
+        <div class="card-header"><h2 id="churn-h">Customer Churn Prediction</h2></div>
+
+        <div class="input-row">
+          <label style="flex:1">
+            <span class="label-text">Customer Unique ID</span>
+            <input type="text" id="customer_id_input" placeholder="e.g. c123..." />
+          </label>
+          <button class="btn" id="churnBtn" style="margin-top: 26px;">Check Churn</button>
+        </div>
+
+        <div id="churnResult" class="result" aria-live="polite"></div>
+      </section>
+
+      <!-- Sentiment Analysis -->
+      <section id="sentCard" class="card sent-card" aria-labelledby="sent-h">
+        <div class="card-header"><h2 id="sent-h">Sentiment Analysis</h2></div>
+
+        <label class="label-text" for="sentiment_input">Portuguese Review</label>
+        <textarea id="sentiment_input" rows="4" placeholder="Type a Portuguese review..."></textarea>
+
+        <div style="margin-top:0.6rem;">
+          <button class="btn" id="sentimentBtn">Analyze Sentiment</button>
+        </div>
+
+        <div id="sentimentResult" class="result" aria-live="polite"></div>
+        <div id="sentimentTranslated" class="muted"></div>
+        <div id="sentimentProb"></div>
+      </section>
+
+    </main>
+
+    <footer class="footer muted">© 2025 — E-commerce Intelligence Platform</footer>
+  </div>
+
+  <!-- point to your uploaded module JS (we keep same IDs so your existing main.js works) -->
+  <script type="module" src="js/main.js"></script>
+</body>
+</html>
