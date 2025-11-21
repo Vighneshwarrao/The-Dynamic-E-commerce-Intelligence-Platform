@@ -1,5 +1,5 @@
 // Use ONE base URL for your backend
-const BASE_URL = "http://127.0.0.1:9835";
+const BASE_URL = "https://the-dynamic-e-commerce-intelligence.onrender.com";
 
 // -------------------------------
 // SALES PREDICTION
