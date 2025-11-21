@@ -10,18 +10,10 @@ app.add_middleware(
     allow_headers=['*']
 )
 # --- Recommended Health endpoint ---
-@app.get("/health", include_in_schema=False)
-def health_check():
-    return {"status": "ok"}
-
-@app.head("/health", include_in_schema=False)
-def health_check_head():
-    return Response(status_code=200)
-
-
-@app.get('/')
+@app.api_route("/", methods=["GET", "HEAD"], include_in_schema=False)
 def hello():
-    return {"message":"Hello World !"}
+    # GET returns JSON body; HEAD will get the same status + headers but no body (server handles it)
+    return {"message": "Hello World !", "status": "ok"}
 
 app.include_router(sales_forecasting.router)
 app.include_router(chrun_prediction.router)
