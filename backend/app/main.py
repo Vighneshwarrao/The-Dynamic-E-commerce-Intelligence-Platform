@@ -9,6 +9,16 @@ app.add_middleware(
     allow_methods=['*'],
     allow_headers=['*']
 )
+# --- Recommended Health endpoint ---
+@app.get("/health", include_in_schema=False)
+def health_check():
+    return {"status": "ok"}
+
+@app.head("/health", include_in_schema=False)
+def health_check_head():
+    return Response(status_code=200)
+
+
 @app.get('/')
 def hello():
     return {"message":"Hello World !"}
