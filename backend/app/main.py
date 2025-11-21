@@ -2,6 +2,7 @@ from fastapi import FastAPI
 from backend.app.services import sales_forecasting ,chrun_prediction,recommendation_model,sentiment_analysis
 from fastapi.middleware.cors import CORSMiddleware
 app=FastAPI()
+'''Allow Origins'''
 app.add_middleware(
     CORSMiddleware,
     allow_origins=['*'],
